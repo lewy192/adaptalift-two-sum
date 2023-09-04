@@ -5,7 +5,7 @@ import { twoSumActions, twoSumReducer } from "@/reducers/twoSumReducer";
 import React, { useReducer, useState } from "react";
 import styles from "./twoSumCard.module.css";
 import { ArrayElement } from "../ArrayElement/ArrayElement";
-import { sumTwoNumbers } from "@/lib/twoSum";
+import { twoSumOptimised } from "@/lib/twoSum";
 
 export const TwoSumCard = (props) => {
     const { handleFormChange, handleFormSubmit, formState } = useForm(
@@ -21,7 +21,7 @@ export const TwoSumCard = (props) => {
     );
     const [indicies, setIndicies] = useState("");
     function executeSumTwoNumbers() {
-        const result = sumTwoNumbers(formState.target, array);
+        const result = twoSumOptimised(formState.target, array);
         setIndicies(result);
     }
     function validateAddNewNumber(number) {
