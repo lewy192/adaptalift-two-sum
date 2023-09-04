@@ -12,24 +12,18 @@ export const TwoSumCard = (props) => {
         { target: "" },
         executeSumTwoNumbers
     );
-    const [target, setTarget] = useState();
+
     const [newArrayElement, setNewArrayElement] = useState();
     const [error, setError] = useState({ error: false, message: "", type: "" });
     const [array, dispatchArrayItems] = useReducer(
         twoSumReducer,
         [2, 6, 14, 12, 10, 25, 60, 20]
     );
-
-    //TODO: if enough time - change to reducer and have children of array each dispatch actions when clicked
-
     const [indicies, setIndicies] = useState("");
-
     function executeSumTwoNumbers() {
         const result = sumTwoNumbers(formState.target, array);
-
         setIndicies(result);
     }
-
     function validateAddNewNumber(number) {
         if (Number.isNaN(number)) {
             return false;
@@ -48,16 +42,12 @@ export const TwoSumCard = (props) => {
             });
         }
     }
-
-    // a) An interface for adding and removing items in the array. (e.g. [2, 6, 14, 15])
-
     // c) Basic validation to ensure the inputs are correct.
 
-    // d) A button to trigger the function call.
     return (
         <div className={styles.container}>
+            <h1 className={styles.header}>Items to find the sum of</h1>
             <div className={styles.arrayToSearch}>
-                <h1>Items to find the sum of</h1>
                 <div className={styles.arrayElements}>
                     {array.map((element) => (
                         <ArrayElement
@@ -69,7 +59,7 @@ export const TwoSumCard = (props) => {
                 </div>
             </div>
             <form
-                className={styles.formArray}
+                className={`${styles.formArray} ${styles.form}`}
                 onSubmit={(e) => {
                     e.preventDefault();
                     dispatchArrayItems({
@@ -80,27 +70,35 @@ export const TwoSumCard = (props) => {
                 }}
             >
                 <input
+                    className={`${styles.input}`}
                     type="number"
                     name="newArrayElement"
                     placeholder="Add Item To array"
                     value={newArrayElement}
                     onChange={handleAddNewNumber}
                 />
-                <input type="submit" />
+                <input type="submit" className={`${styles.submit}`} />
             </form>
             <form className={styles.form} onSubmit={handleFormSubmit}>
                 <input
+                    className={`${styles.input}`}
                     type="number"
                     name="target"
                     placeholder="Enter a target number..."
                     value={formState.target}
                     onChange={handleFormChange}
                 />
-                <input type="submit" placeholder="Find Two Sum Numbers" />
+                <input
+                    type="submit"
+                    className={`${styles.submit}`}
+                    placeholder="Find Two Sum Numbers"
+                />
             </form>
-            {indicies
+            {indicies === ""
+                ? ""
+                : indicies
                 ? `indicies that match the target: ${indicies}`
-                : "No Match"}
+                : ""}
         </div>
     );
 };

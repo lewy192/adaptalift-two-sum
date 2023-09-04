@@ -1,9 +1,43 @@
-.arrayElement {
+.arrayElement,
+.overlay {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: 1rem 0;
     text-align: center;
     border-radius: 10%;
-    flex: 1 1 0;
     font-size: 1.5rem;
+}
+
+.arrayElement {
+    padding: 1rem 0;
+    flex: 1 1 0;
     background-color: rgba(91, 210, 91, 0.737);
+    transition: all 200ms ease-in-out;
+    position: relative;
+}
+
+.arrayElement:hover {
+    background-color: rgba(91, 210, 91, 0.9);
+    cursor: pointer;
+    color: rgba(91, 210, 91, 0.9);
+}
+
+.arrayElement::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 200ms ease-in-out;
+    line-height: 3.5rem;
+    color: black;
+}
+.overlay.active {
+    opacity: 1;
+    background-color: rgb(198, 74, 74);
 }
