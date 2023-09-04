@@ -7,8 +7,8 @@
 }
 
 .arrayElement {
-    padding: 1rem 0;
-    flex: 1 1 0;
+    padding: 1rem 0.5rem;
+    flex: 1 1 0px;
     background-color: rgba(91, 210, 91, 0.737);
     transition: all 200ms ease-in-out;
     position: relative;

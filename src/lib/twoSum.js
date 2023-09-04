@@ -1,4 +1,4 @@
-export function sumTwoNumbers(target, haystack) {
+function sumTwoNumbers(target, haystack) {
     for (let i = 0; i < haystack.length; i++) {
         for (let j = 1; j < haystack.length; j++) {
             if (i == j) continue;
@@ -12,8 +12,19 @@ export function sumTwoNumbers(target, haystack) {
     return null;
 }
 
-export function sumTwoNumbersOpt(target, haystack) {
+function twoSumOptimised(target, haystack) {
+    const hashtable = {};
     for (let i = 0; i < haystack.length; i++) {
-        const element = haystack[i];
+        let diff = target - haystack[i];
+
+        if (hashtable.hasOwnProperty(diff)) {
+            return `${hashtable[diff]}, ${i}`;
+        }
+
+        hashtable[haystack[i]] = i;
     }
+
+    return null;
 }
+
+module.exports = { twoSumOptimised, sumTwoNumbers };
